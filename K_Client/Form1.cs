@@ -31,6 +31,7 @@ namespace K_Client
             {
                 //empty check
                 MessageBox.Show("Введите e-mail и пароль!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             _pass = textBox_pass.Text;
@@ -40,7 +41,15 @@ namespace K_Client
 
             string sha = Convert.ToBase64String(pass_sha);
 
-            MessageBox.Show(sha, e_mail, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show(sha, e_mail, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if(TCP_Client_K.Conn("127.0.0.1", 80) != 0x00)
+            {
+                MessageBox.Show("Не удалось подключиться к серверу", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
         }
     }
 }
