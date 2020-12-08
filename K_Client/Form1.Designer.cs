@@ -88,6 +88,7 @@ namespace K_Client
             this.button_enter.TabIndex = 5;
             this.button_enter.Text = "Войти";
             this.button_enter.UseVisualStyleBackColor = true;
+            this.button_enter.Click += new System.EventHandler(this.button_enter_Click);
             // 
             // label4
             // 
