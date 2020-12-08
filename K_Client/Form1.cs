@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace K_Client
 {
-    public partial class Form1 : Form
+    public partial class Form_Auth : Form
     {
-        public Form1()
+        public Form_Auth()
         {
             InitializeComponent();
         }
