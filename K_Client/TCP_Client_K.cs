@@ -91,5 +91,15 @@ namespace K_Client
             
             return responseData;
         }
+
+        public static void Close()
+        {
+            try
+            {
+                stream.Close();
+                client.Close();
+            }
+            catch { }
+        }
     }
 }

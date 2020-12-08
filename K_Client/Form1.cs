@@ -49,7 +49,10 @@ namespace K_Client
                 return;
             }
 
-
+            //Connected...
+            Form2 f = new Form2();
+            f.Show();
+            this.Hide();
         }
     }
 }
