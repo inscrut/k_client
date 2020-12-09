@@ -73,7 +73,7 @@ namespace K_Client
 
         public static string Read()
         {
-            String responseData = String.Empty;
+            /*String responseData = String.Empty;
             Byte[] data = new Byte[512];
 
 
@@ -89,7 +89,18 @@ namespace K_Client
                 return null;
             }
             
-            return responseData;
+            return responseData;*/
+            string Message = "";
+            byte[] Buffer = new byte[1024];
+            int Count;
+            while ((Count = stream.Read(Buffer, 0, Buffer.Length)) > 0)
+            {
+                Message += Encoding.UTF8.GetString(Buffer, 0, Count);
+
+                if (Message.IndexOf("\r\n\r\n") >= 0 || Message.Length > 1024)
+                    break;
+            }
+            return Message;
         }
 
         public static void Close()

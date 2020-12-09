@@ -48,8 +48,25 @@ namespace K_Client
                 MessageBox.Show("Не удалось подключиться к серверу", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             //Connected...
+
+            TCP_Client_K.Send("LOGIN\r\n\r\n");
+
+            if (TCP_Client_K.Read() != "OK\r\n\r\n")
+            {
+                MessageBox.Show("Неверный ответ сервера!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            TCP_Client_K.Send(e_mail + "\r\n\r\n");
+            TCP_Client_K.Send(sha + "\r\n\r\n");
+
+            if (TCP_Client_K.Read() != "ACCEPT\r\n\r\n")
+            {
+                MessageBox.Show("Неверный логин или пароль!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Form2 f = new Form2();
             f.Show();
             this.Hide();
