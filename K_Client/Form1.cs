@@ -52,7 +52,7 @@ namespace K_Client
 
             TCP_Client_K.Send("LOGIN\r\n\r\n");
 
-            if (TCP_Client_K.Read() != "OK\r\n\r\n")
+            if (TCP_Client_K.Read() != "OK")
             {
                 MessageBox.Show("Неверный ответ сервера!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -61,7 +61,7 @@ namespace K_Client
             TCP_Client_K.Send(e_mail + "\r\n\r\n");
             TCP_Client_K.Send(sha + "\r\n\r\n");
 
-            if (TCP_Client_K.Read() != "ACCEPT\r\n\r\n")
+            if (TCP_Client_K.Read() != "ACCEPT")
             {
                 MessageBox.Show("Неверный логин или пароль!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

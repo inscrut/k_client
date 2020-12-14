@@ -90,16 +90,43 @@ namespace K_Client
             }
             
             return responseData;*/
-            string Message = "";
-            byte[] Buffer = new byte[1024];
-            int Count;
-            while ((Count = stream.Read(Buffer, 0, Buffer.Length)) > 0)
+
+            /*while ((Count = stream.Read(Buffer, 0, Buffer.Length)) > 0)
             {
                 Message += Encoding.UTF8.GetString(Buffer, 0, Count);
 
                 if (Message.IndexOf("\r\n\r\n") >= 0 || Message.Length > 1024)
                     break;
+            }*/
+
+            string Message = "";
+            byte[] Buffer = new byte[1024];
+            int Count;
+
+            try
+            {
+                while ((Count = stream.Read(Buffer, 0, Buffer.Length)) > 0)
+                {
+                    Message += Encoding.UTF8.GetString(Buffer, 0, Count);
+
+                    if (Message.Contains("\r\n\r\n") || Message.Length > 1024)
+                    {
+                        Message = Message.Replace("\r\n\r\n", "");
+                        break;
+                    }
+                }
             }
+            catch (System.IO.IOException e)
+            {
+                MessageBox.Show(e.Message, "Ошибка получения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            catch
+            {
+                MessageBox.Show("Непредвиденная ошибка!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
             return Message;
         }
 
