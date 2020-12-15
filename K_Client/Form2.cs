@@ -71,9 +71,27 @@ namespace K_Client
             _msgs = res.Split(';').ToList();
             _msgs.Remove(""); //fix last empty obj
 
-            foreach (var str in _msgs)
+
+            string[] substr = null; //10,718,user1,ru-RU, Hello, i am user1 in 718
+
+            foreach (string str in _msgs)
             {
-                textBox_messages.Text += str + "\r\n";
+                substr = str.Split(',');
+                textBox_messages.Text += substr[3] + " (" + substr[2] + ") >> ";
+                
+                if(substr.Length > 5)
+                {
+                    for(int i=4; i<substr.Length; i++)
+                    {
+                        if (i + 1 == substr.Length) textBox_messages.Text += substr[i];
+                        else textBox_messages.Text += substr[i] + ",";
+                    }
+                    textBox_messages.Text += "\r\n";
+                }
+                else
+                {
+                    textBox_messages.Text += substr[4] + "\r\n";
+                }                
             }
         }
     }
