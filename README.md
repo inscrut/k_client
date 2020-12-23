@@ -1,6 +1,6 @@
-# Server app for messanger
+# Client app for messanger
 
-Simple multi-thread server for messanger.
+Simple messanger.
 
 ### Comments
 
